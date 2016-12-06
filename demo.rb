@@ -1,5 +1,6 @@
 require 'thread'
 require 'socket'
+require 'erb'
 
 class RequestHandler
 	def initialize(session)
@@ -12,8 +13,12 @@ class RequestHandler
 		@session.puts "HTTP/1.1 200 OK"
 		@session.puts "content-type: text/html"
 		@session.puts ""
-		@session.puts "<html><body>Hello World</body></html>"
+
+		myfile = IO.readlines("ryan.html")
+		@session.puts myfile
+
 		@session.close
+
 	end
 end
 
